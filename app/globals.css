@@ -194,7 +194,7 @@ button { font: inherit; }
   animation: none !important;
 }
 .about-stage {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: 100;
   display: grid;
@@ -362,7 +362,7 @@ button { font: inherit; }
   white-space: nowrap;
 }
 .contact-stage {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: 100;
   display: grid;

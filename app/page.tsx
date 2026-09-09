@@ -1101,8 +1101,8 @@ function AboutPolaroid({ onClose }: { onClose: () => void }) {
 
   return (
     <div ref={stageRef} className="about-stage">
-      <DialogTitle className="sr-only">About Jiayan Mo</DialogTitle>
-      <DialogDescription className="sr-only">Flip the Polaroid to reveal a handwritten motto.</DialogDescription>
+      <h2 className="sr-only">About Jiayan Mo</h2>
+      <p className="sr-only">Flip the Polaroid to reveal a handwritten motto.</p>
       <button className="about-backdrop" type="button" onClick={() => setIsLeaving(true)} aria-label="Put the Polaroid back" />
       <button className="contact-stage-close" type="button" onClick={() => setIsLeaving(true)} aria-label="Close about Polaroid"><X /></button>
 
@@ -1235,8 +1235,8 @@ function ContactBadge({ onClose }: { onClose: () => void }) {
 
   return (
     <div ref={stageRef} className="contact-stage">
-      <DialogTitle className="sr-only">Momo&apos;s contact staff ID</DialogTitle>
-      <DialogDescription className="sr-only">Flip the staff ID to view and use contact details.</DialogDescription>
+      <h2 className="sr-only">Momo&apos;s contact staff ID</h2>
+      <p className="sr-only">Flip the staff ID to view and use contact details.</p>
       <button className="contact-backdrop" type="button" onClick={() => setIsLeaving(true)} aria-label="Put the contact card back" />
       <button className="contact-stage-close" type="button" onClick={() => setIsLeaving(true)} aria-label="Close contact card"><X /></button>
 
@@ -1427,25 +1427,9 @@ export default function Home() {
         <PersonalStuffViewer itemId={selectedStuff.id} origin={selectedStuff.origin} onClose={() => setSelectedStuff(null)} />
       )}
 
-      <Dialog open={activePanel === 'polaroid'} onOpenChange={(open) => !open && closePanel()}>
-        <DialogContent
-          className="contact-dialog"
-          showCloseButton={false}
-          style={{ position: 'fixed', inset: 0, width: '100vw', height: '100dvh', maxWidth: 'none', transform: 'none', margin: 0 }}
-        >
-          {activePanel === 'polaroid' && <AboutPolaroid onClose={closePanel} />}
-        </DialogContent>
-      </Dialog>
+      {activePanel === 'polaroid' && <AboutPolaroid onClose={closePanel} />}
 
-      <Dialog open={activePanel === 'badge'} onOpenChange={(open) => !open && closePanel()}>
-        <DialogContent
-          className="contact-dialog"
-          showCloseButton={false}
-          style={{ position: 'fixed', inset: 0, width: '100vw', height: '100dvh', maxWidth: 'none', transform: 'none', margin: 0 }}
-        >
-          {activePanel === 'badge' && <ContactBadge onClose={closePanel} />}
-        </DialogContent>
-      </Dialog>
+      {activePanel === 'badge' && <ContactBadge onClose={closePanel} />}
 
       <Dialog open={Boolean(activePanel && activePanel !== 'polaroid' && activePanel !== 'badge')} onOpenChange={(open) => !open && closePanel()}>
         <DialogContent ref={dialogRef} className={`portfolio-dialog portfolio-dialog-${activePanel ?? 'none'}`} showCloseButton>
