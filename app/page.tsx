@@ -62,6 +62,7 @@ const videos = [
     details: ['视频策划 · 拍摄 · 剪辑', '2023 全国学院奖优秀奖'],
     cover: '/portfolio/video/video-01/cover.png',
     src: '/portfolio/video/video-01/full.mp4',
+    fullUrl: null,
   },
   {
     title: 'TVC《刻画新规则》',
@@ -69,6 +70,7 @@ const videos = [
     details: ['剪辑 · 出镜', '第十五届大广赛省级优秀奖'],
     cover: '/portfolio/video/video-02/cover.jpg',
     src: '/portfolio/video/video-02/full.mp4',
+    fullUrl: null,
   },
   {
     title: 'TVC《拒绝卡顿》',
@@ -76,6 +78,7 @@ const videos = [
     details: ['策划 · 剪辑', '第十五届大广赛国家级三等奖'],
     cover: '/portfolio/video/video-03/cover.png',
     src: '/portfolio/video/video-03/full.mp4',
+    fullUrl: null,
   },
   {
     title: '微纪录片《百年短暂，滋味悠长》',
@@ -83,6 +86,7 @@ const videos = [
     details: ['脚本 · 拍摄 · 剪辑', '城市文化微纪录片'],
     cover: '/portfolio/video/video-04/cover.png',
     src: '/portfolio/video/video-04/full.mp4',
+    fullUrl: 'https://my.feishu.cn/record/A614rkOeDen0WjcyJSucuvYInRb',
   },
   {
     title: '旅行影像《九月烟台》',
@@ -90,6 +94,7 @@ const videos = [
     details: ['共同策划 · 共同拍摄 · 剪辑', '个人旅行影像 / 非商业创作'],
     cover: '/portfolio/video/video-05/cover.png',
     src: '/portfolio/video/video-05/full.mp4',
+    fullUrl: null,
   },
 ];
 
@@ -912,7 +917,7 @@ function VideoPlayer({ activeIndex, setActiveIndex }: { activeIndex: number; set
             swipeStart.current = null;
           }}
         >
-          <button
+          <article
             className={`video-card video-card-tone-${activeIndex % 3}`}
             key={activeVideo.title}
             aria-label={`${activeVideo.title} details`}
@@ -924,8 +929,11 @@ function VideoPlayer({ activeIndex, setActiveIndex }: { activeIndex: number; set
               <span className="video-details">
                 {activeVideo.details.map((detail) => <span key={detail}>{detail}</span>)}
               </span>
+              {activeVideo.fullUrl && (
+                <a className="video-full-link" href={activeVideo.fullUrl} target="_blank" rel="noreferrer">观看完整版 ↗</a>
+              )}
             </span>
-          </button>
+          </article>
         </div>
 
         <div className="video-controls">
